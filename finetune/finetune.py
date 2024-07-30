@@ -152,14 +152,17 @@ def train():
     global local_rank
     parser = transformers.HfArgumentParser(
         (ModelArguments, DataArguments, TrainingArguments, LoraArguments)
-    )
-
+    )  
     (
         model_args,
         data_args,
         training_args,
         lora_args,
     ) = parser.parse_args_into_dataclasses()
+    # print(f"model_args is {model_args}")
+    # print(f"data_args is {data_args}")
+    # print(f"training_args is {training_args}")
+    # print(f"lora_args is {lora_args}")
 
     if getattr(training_args, "deepspeed", None) : 
         training_args.distributed_state.distributed_type = DistributedType.DEEPSPEED
